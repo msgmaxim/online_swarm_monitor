@@ -1,6 +1,7 @@
 
 mod node_pool;
 mod lokid_api;
+mod sn_api;
 
 use lokid_api::Network;
 
@@ -41,6 +42,15 @@ async fn main() {
 
     let node_pool = lokid_api::get_n_service_nodes(2000, &network).await;
 
-    dbg!(node_pool.len());
+    println!("Node pool size: {}", node_pool.len());
+
+    let client = reqwest::Client::builder()
+        .danger_accept_invalid_certs(true)
+        .build()
+        .expect("building certificate");
+
+    let stats = sn_api::get_stats(&client, &node_pool[0]).await;
+
+    println!("Stats: {:?}", stats);
 
 }

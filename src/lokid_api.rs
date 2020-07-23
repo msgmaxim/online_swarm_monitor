@@ -1,6 +1,7 @@
 
-use serde_json::{json, Value};
+use std::fmt::{self};
 
+use serde_json::{json, Value};
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug, Clone)]
@@ -11,6 +12,15 @@ pub struct ServiceNodeRecord {
     pub pubkey_x25519: String,
     pub pubkey_ed25519: String,
     pub swarm_id: u64,
+}
+
+impl fmt::Display for ServiceNodeRecord {
+
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        // port is most useful when testing locally, might change this for mainnet/testnet
+        write!(f, "{}:{}", self.public_ip, self.storage_port)
+    }
+
 }
 
 pub struct Network {
