@@ -12,3 +12,11 @@ reqwest = { version = "0.10", features = ["json"] }
 serde_json = "*"
 serde = { version = "1.0", features = ["derive"]}
 clap = "*"
+rand = "*"
+futures = "*"
+lazy_static = "*"
+warp = "*"
+
+[dependencies.rusqlite]
+version = "0.21.0"
+features = ["bundled"]

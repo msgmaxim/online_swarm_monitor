@@ -1,7 +1,5 @@
-
-use serde::Deserialize;
 use crate::lokid_api::ServiceNodeRecord;
-
+use serde::Deserialize;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct SnodeStats {
@@ -10,6 +8,8 @@ pub struct SnodeStats {
     pub reset_time: u64,
     pub total_stored: u32,
     pub connections_in: u32,
+    pub previous_period_store_requests: u32, // stores in the last hour
+    pub previous_period_retrieve_requests: u32, // retrieves in the last hour
 }
 
 pub type StatsResult = Result<SnodeStats, String>;
